@@ -1,0 +1,6 @@
+micronaut:
+  application:
+    name: "Test Application"
+  server:
+    port: 8888
+message: "Hello"
