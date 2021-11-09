@@ -6,15 +6,7 @@ pluginManagement {
 }
 
 plugins {
-    id 'com.gradle.enterprise' version '3.7'
     id 'me.champeau.includegit' version '0.1.2'
-}
-
-gradleEnterprise {
-    server = "https://ge.micronaut.io"
-    buildScan {
-        publishAlways()
-    }
 }
 
 rootProject.name = "demo-app"
