@@ -35,6 +35,7 @@ gitRepositories {
         branch = '3.2.x'
         includedBuild {
             dependencySubstitution {
+                substitute(module("io.micronaut:micronaut-bom")).using(project(":bom"))
                 substitute(module("io.micronaut:micronaut-context")).using(project(":context"))
                 substitute(module("io.micronaut:micronaut-core-reactive")).using(project(":core-reactive"))
             }
