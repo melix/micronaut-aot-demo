@@ -32,7 +32,7 @@ gitRepositories {
 
     include("micronaut-core") {
         uri = "https://github.com/micronaut-projects/micronaut-core"
-        branch = '3.2.x'
+        branch = 'cc/upgrade-mn-build-426'
         includedBuild {
             dependencySubstitution {
                 substitute(module("io.micronaut:micronaut-bom")).using(project(":bom"))
