@@ -2,8 +2,8 @@ import org.graalvm.buildtools.gradle.tasks.BuildNativeImageTask
 
 plugins {
     id("com.github.johnrengelman.shadow") version "7.0.0"
-    id("io.micronaut.application") version "3.0.0-SNAPSHOT"
-    id("io.micronaut.aot") version "3.0.0-SNAPSHOT"
+    id("io.micronaut.application") version "3.1.0-SNAPSHOT"
+    id("io.micronaut.aot") version "3.1.0-SNAPSHOT"
     //id("groovy")
 }
 
@@ -11,12 +11,11 @@ version = "0.1"
 group = "demo.app"
 
 repositories {
-    mavenLocal()
     mavenCentral()
 }
 
 micronaut {
-    version.set("3.2.0-SNAPSHOT")
+    version.set("3.2.0")
     runtime("netty")
     testRuntime("junit5")
     processing {
@@ -62,7 +61,7 @@ java {
     }
 }
 
-/*
+
 graalvmNative {
     binaries {
         named("optimized") {
@@ -108,4 +107,3 @@ tasks.named<JavaExec>("optimizedRun") {
 //    debug = true
 //    jvmArgs("-agentpath:/home/cchampeau/TOOLS/YourKit-JavaProfiler-2019.8/bin/linux-x86-64/libyjpagent.so=sampling,onexit=snapshot")
 }
-*/

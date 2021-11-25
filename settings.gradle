@@ -2,6 +2,9 @@ pluginManagement {
     repositories {
         gradlePluginPortal()
         mavenCentral()
+        maven {
+            url "https://s01.oss.sonatype.org/content/repositories/snapshots"
+        }
     }
 }
 
@@ -10,35 +13,3 @@ plugins {
 }
 
 rootProject.name = "demo-app"
-
-gitRepositories {
-    include("micronaut-gradle-plugin") {
-        uri = "https://github.com/micronaut-projects/micronaut-gradle-plugin"
-        branch = "cc/micronaut-aot-integration"
-    }
-
-    include("micronaut-aot") {
-        uri = "https://github.com/micronaut-projects/micronaut-aot"
-        branch = 'master'
-        includedBuild {
-            dependencySubstitution {
-                substitute(module("io.micronaut.aot:micronaut-aot-cli")).using(project(":aot-cli"))
-                substitute(module("io.micronaut.aot:micronaut-aot-api")).using(project(":aot-api"))
-                substitute(module("io.micronaut.aot:micronaut-aot-core")).using(project(":aot-core"))
-                substitute(module("io.micronaut.aot:micronaut-aot-std-optimizers")).using(project(":aot-std-optimizers"))
-            }
-        }
-    }
-
-    include("micronaut-core") {
-        uri = "https://github.com/micronaut-projects/micronaut-core"
-        branch = '3.2.x'
-        includedBuild {
-            dependencySubstitution {
-                substitute(module("io.micronaut:micronaut-bom")).using(project(":bom"))
-                substitute(module("io.micronaut:micronaut-context")).using(project(":context"))
-                substitute(module("io.micronaut:micronaut-core-reactive")).using(project(":core-reactive"))
-            }
-        }
-    }
-}
