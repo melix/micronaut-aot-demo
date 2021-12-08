@@ -2,8 +2,8 @@ import org.graalvm.buildtools.gradle.tasks.BuildNativeImageTask
 
 plugins {
     id("com.github.johnrengelman.shadow") version "7.0.0"
-    id("io.micronaut.application") version "3.1.0-SNAPSHOT"
-    id("io.micronaut.aot") version "3.1.0-SNAPSHOT"
+    id("io.micronaut.application") version "3.1.0-M1"
+    id("io.micronaut.aot") version "3.1.0-M1"
     //id("groovy")
 }
 
@@ -15,7 +15,7 @@ repositories {
 }
 
 micronaut {
-    version.set("3.2.0")
+    version.set("3.2.1")
     runtime("netty")
     testRuntime("junit5")
     processing {
@@ -24,7 +24,8 @@ micronaut {
     }
 
     aot {
-//        version = "1.0.1"
+        version.set("1.0.0-M2")
+        configFile.set(file("aot.properties"))
         sealEnvironment.set(true)
         optimizeServiceLoading.set(true)
         optimizeClassLoading.set(true)
@@ -66,13 +67,13 @@ graalvmNative {
     binaries {
         named("optimized") {
             verbose.set(true)
-            buildArgs.add("-H:DashboardDump=" + file("$buildDir/dump").absolutePath)
-            buildArgs.add("-H:+DashboardAll")
+//            buildArgs.add("-H:DashboardDump=" + file("$buildDir/dump").absolutePath)
+//            buildArgs.add("-H:+DashboardAll")
             buildArgs.add("-H:+ReportExceptionStackTraces")
 
             // profiling
-            buildArgs.add("-H:-DeleteLocalSymbols")
-            buildArgs.add("-H:+PreserveFramePointer")
+//            buildArgs.add("-H:-DeleteLocalSymbols")
+//            buildArgs.add("-H:+PreserveFramePointer")
         }
     }
 }

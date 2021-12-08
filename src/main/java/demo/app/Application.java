@@ -14,7 +14,8 @@ public class Application {
         @Override
         public void configure(ApplicationContextBuilder builder) {
             System.out.println("Java configurer loaded");
-            builder.deduceEnvironment(false);
+//            builder.deduceEnvironment(false);
+            builder.deduceEnvironment(true);
         }
     }
 

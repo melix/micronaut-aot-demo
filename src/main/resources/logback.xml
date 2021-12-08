@@ -15,6 +15,9 @@
     <logger name="io.micronaut.core.optim.StaticOptimizations" level="debug" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>
+    <logger name="io.micronaut.aot" level="debug" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
     <logger name="io.micronaut.core.io.service.SoftServiceLoader" level="debug" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>
