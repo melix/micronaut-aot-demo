@@ -1,0 +1,11 @@
+hogwarts:
+  students:
+    gregory:
+      first-name: 'Gregory'
+      last-name: 'Goyle'
+    vicent:
+      first-name: 'Vicent'
+      last-name: 'Crabbe'
+    draco:
+      first-name: 'Draco'
+      last-name: 'Malfoy'

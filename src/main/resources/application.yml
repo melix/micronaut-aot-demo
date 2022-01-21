@@ -3,3 +3,11 @@ micronaut:
     name: demoApp
   server:
     port: 8181
+---
+hogwarts:
+  headmaster: Albus Dumbledore
+---
+netty:
+  default:
+    allocator:
+      max-order: 1

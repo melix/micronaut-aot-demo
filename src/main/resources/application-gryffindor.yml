@@ -1,0 +1,11 @@
+hogwarts:
+  students:
+    harry:
+      first-name: 'Harry'
+      last-name: 'Potter'
+    ron:
+      first-name: 'Ron'
+      last-name: 'Weasley'
+    hermione:
+      first-name: 'Hermione'
+      last-name: 'Granger'

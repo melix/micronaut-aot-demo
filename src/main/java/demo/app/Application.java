@@ -16,11 +16,15 @@ public class Application {
             System.out.println("Java configurer loaded");
 //            builder.deduceEnvironment(false);
             builder.deduceEnvironment(true);
+            builder.defaultEnvironments("gryffindor");
         }
     }
 
     public static void main(String[] args) {
         Micronaut.run(Application.class, args);
+        if (System.getenv("BENCHMARK") != null) {
+            System.exit(0);
+        }
     }
 
 }

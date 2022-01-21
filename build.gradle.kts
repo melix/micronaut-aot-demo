@@ -2,8 +2,8 @@ import org.graalvm.buildtools.gradle.tasks.BuildNativeImageTask
 
 plugins {
     id("com.github.johnrengelman.shadow") version "7.0.0"
-    id("io.micronaut.application") version "3.1.0-M1"
-    id("io.micronaut.aot") version "3.1.0-M1"
+    id("io.micronaut.application") version "3.2.0"
+    id("io.micronaut.aot") version "3.2.0"
     //id("groovy")
 }
 
@@ -15,7 +15,8 @@ repositories {
 }
 
 micronaut {
-    version.set("3.2.1")
+    version.set("3.3.0-M1")
+//    version.set("3.2.1")
     runtime("netty")
     testRuntime("junit5")
     processing {
@@ -24,14 +25,16 @@ micronaut {
     }
 
     aot {
-        version.set("1.0.0-M2")
+        version.set("1.0.0-M6")
         configFile.set(file("aot.properties"))
-        sealEnvironment.set(true)
+        cacheEnvironment.set(true)
         optimizeServiceLoading.set(true)
         optimizeClassLoading.set(true)
         convertYamlToJava.set(true)
         precomputeOperations.set(true)
-//        replaceLogbackXml.set(true)
+        deduceEnvironment.set(true)
+//        possibleEnvironments.set(listOf("dev", "gryffindor", "hufflepuff", "ravenclaw", "slytherin"))
+        replaceLogbackXml.set(true)
     }
 
 
@@ -49,6 +52,8 @@ dependencies {
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
     //implementation("org.codehaus.groovy:groovy")
+    aotPlugins("ch.qos.logback:logback-classic:1.3.0-alpha12")
+    aotPlugins("org.fusesource.jansi:jansi:1.18")
 }
 
 
@@ -62,8 +67,14 @@ java {
     }
 }
 
+tasks.withType<org.graalvm.buildtools.gradle.tasks.BuildNativeImageTask>().configureEach {
+    disableToolchainDetection.set(true)
+}
 
 graalvmNative {
+    binaries.all {
+//        buildArgs.add("-H:+AllowVMInspection")
+    }
     binaries {
         named("optimized") {
             verbose.set(true)
@@ -72,8 +83,8 @@ graalvmNative {
             buildArgs.add("-H:+ReportExceptionStackTraces")
 
             // profiling
-//            buildArgs.add("-H:-DeleteLocalSymbols")
-//            buildArgs.add("-H:+PreserveFramePointer")
+            buildArgs.add("-H:-DeleteLocalSymbols")
+            buildArgs.add("-H:+PreserveFramePointer")
         }
     }
 }
